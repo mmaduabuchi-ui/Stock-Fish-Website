@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Products - C.O Emmanuel Fishery Enterprise</title>
+  <style>
+    nav { margin: 10px 0; }
+    nav a { margin: 0 10px; text-decoration: none; }
+    footer { margin-top: 20px; font-size: 14px; }
+    img.banner { width: 100%; max-height: 300px; object-fit: cover; }
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .product-item {
+      width: 200px;
+      text-align: center;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .product-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Banner Image -->
+  <img src="images/stockfish-11.jpg.jpg" alt="Stockfish Products" class="banner">
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="about.html">About</a> |
+    <a href="products.html">Products</a> |
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- Page Content -->
+  <h1>Our Products</h1>
+  <p>Explore our premium stockfish varieties and enjoy unbeatable quality and taste.</p>
+
+  <!-- Product List -->
+  <div class="product-list" id="product-list">
+    <!-- Products will be inserted here by JavaScript -->
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Address: SF 18 No 7 Cemetery Market, Eziukwu, Aba</p>
+    <p>Phone: 07062474000</p>
+  </footer>
+
+  <!-- JavaScript to Load Products -->
+  <script>
+    const products = [
+      { name: "White Cod", image: "images/stock1.jpg.jpg" },
+      { name: "Saga Fisk Head", image: "images/stockfish-3.jpg.jpg" },
+      { name: "Cod Head", image: "images/stockfish-4.jpg.jpg" },
+      { name: "Bell Cod R/C 40/60", image: "images/stockfish-11.jpg.jpg" }
+    ];
+
+    const productList = document.getElementById("product-list");
+
+    products.forEach(product => {
+      const item = document.createElement("div");
+      item.className = "product-item";
+      item.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+      `;
+      productList.appendChild(item);
+    });
+  </script>
+</body>
+</html>

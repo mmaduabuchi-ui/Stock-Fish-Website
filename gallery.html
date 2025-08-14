@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery - C.O Emmanuel Fishery Enterprise</title>
+  <style>
+    nav { margin: 10px 0; }
+    nav a { margin: 0 10px; text-decoration: none; }
+    footer { margin-top: 20px; font-size: 14px; }
+    img.banner { width: 100%; max-height: 300px; object-fit: cover; }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .gallery-item {
+      width: 300px;
+      text-align: center;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .gallery-item img, .gallery-item video {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Banner Image -->
+  <img src="images/stockfish-2.jpg.jpg" alt="Gallery" class="banner">
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="about.html">About</a> |
+    <a href="products.html">Products</a> |
+    <a href="gallery.html">Gallery</a> |
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- Page Content -->
+  <h1>Gallery</h1>
+  <p>Browse our beautiful collection of images and videos showcasing our premium stockfish and happy customers.</p>
+
+  <!-- Gallery Items -->
+  <div class="gallery" id="gallery-list">
+    <!-- Images & videos will be inserted here by JavaScript -->
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Address: SF 18 No 7 Cemetery Market, Eziukwu, Aba</p>
+    <p>Phone: 07062474000</p>
+  </footer>
+
+  <!-- JavaScript to Load Gallery -->
+  <script>
+    const galleryItems = [
+      { type: "image", name: "Premium Stockfish 1", file: "images/stock5.jpg.jpg" },
+      { type: "image", name: "Premium Stockfish 2", file: "images/stock6.jpg (2).jpg" },
+      { type: "image", name: "Premium Stockfish 3", file: "images/stock6.jpg.jpg" },
+      { type: "image", name: "Premium Stockfish 4", file: "images/stock8.jpg.png" },
+      { type: "image", name: "Premium Stockfish 5", file: "images/stockfish-2.jpg.jpg" }
+      // You can still add video items here if needed
+    ];
+
+    const galleryList = document.getElementById("gallery-list");
+
+    galleryItems.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "gallery-item";
+
+      if (item.type === "image") {
+        div.innerHTML = `
+          <img src="${item.file}" alt="${item.name}">
+          <h3>${item.name}</h3>
+        `;
+      } else if (item.type === "video") {
+        div.innerHTML = `
+          <video controls>
+            <source src="${item.file}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <h3>${item.name}</h3>
+        `;
+      }
+
+      galleryList.appendChild(div);
+    });
+  </script>
+</body>
+</html>

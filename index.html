@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>C.O Emmanuel Fishery Enterprise - Stockfish Dealer in Aba</title>
+  <meta name="description" content="C.O Emmanuel Fishery Enterprise is your trusted dealer of premium stockfish in Aba. We supply high-quality stockfish for wholesalers, retailers, and homes.">
+  <meta name="keywords" content="stockfish Aba, fishery enterprise, C.O Emmanuel, dried fish Nigeria, wholesale stockfish, Aba market fish">
+  <meta name="author" content="C.O Emmanuel Fishery Enterprise">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Open Graph for social media -->
+  <meta property="og:title" content="C.O Emmanuel Fishery Enterprise - Premium Stockfish in Aba">
+  <meta property="og:description" content="Dealer of all kinds of premium stockfish. Visit us at SF 18 No 7 Cemetry Market, Eziukwu, Aba.">
+  <meta property="og:image" content="images/stock1.jpg.jpg">
+  <meta property="og:url" content="https://yourwebsite.com">
+  <meta property="og:type" content="website">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <style>
+    nav { margin: 10px 0; }
+    nav a { margin: 0 10px; text-decoration: none; }
+    footer { margin-top: 20px; font-size: 14px; }
+    img.banner { width: 100%; max-height: 300px; object-fit: cover; }
+
+    /* Gallery styling */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .gallery-item {
+      width: 200px;
+      text-align: center;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    /* Blog preview styling */
+    .blog-preview {
+      margin-top: 40px;
+    }
+    .blog-post {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+    .blog-post h3 {
+      margin-bottom: 5px;
+    }
+    .blog-post small {
+      color: #777;
+      font-size: 12px;
+    }
+
+    /* Products styling */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .product-item {
+      width: 200px;
+      text-align: center;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .product-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Banner Image -->
+  <img src="images/stock1.jpg.jpg" alt="Premium Stockfish from C.O Emmanuel Fishery Enterprise" class="banner">
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="about.html">About</a> |
+    <a href="products.html">Products</a> |
+    <a href="gallery.html">Gallery</a> |
+    <a href="blog.html">Blog</a> |
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- Page Content -->
+  <h1>Welcome to C.O Emmanuel Fishery Enterprise</h1>
+  <p>Dealer of All Kinds of Stockfish</p>
+
+  <!-- Products Section -->
+  <h2>Our Products</h2>
+  <div class="products" id="home-products"></div>
+
+  <!-- Gallery Section -->
+  <h2>Our Gallery</h2>
+  <div class="gallery" id="home-gallery"></div>
+
+  <!-- Blog Preview Section -->
+  <div class="blog-preview">
+    <h2>From Our Blog</h2>
+    <div id="home-blog"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Address: SF 18 No 7 Cemetry Market, Eziukwu, Aba</p>
+    <p>Phone: 07062474000</p>
+  </footer>
+
+  <!-- JavaScript to load data from Google Sheets -->
+  <script>
+    const productCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR08w-CdnrCydtG2JgWn6wv98cCoTY4_9Tq0xBavYnFyZ8WQ_Zq4xhM_ODehoI9AUxuKG7YQWg7reKs/pub?gid=0&single=true&output=csv";
+    const galleryCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR08w-CdnrCydtG2JgWn6wv98cCoTY4_9Tq0xBavYnFyZ8WQ_Zq4xhM_ODehoI9AUxuKG7YQWg7reKs/pub?gid=609472923&single=true&output=csv";
+    const blogCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR08w-CdnrCydtG2JgWn6wv98cCoTY4_9Tq0xBavYnFyZ8WQ_Zq4xhM_ODehoI9AUxuKG7YQWg7reKs/pub?gid=1814791796&single=true&output=csv";
+
+    function parseCSV(text) {
+      return text.trim().split("\n").slice(1).map(row => {
+        const cols = row.split(",");
+        return { name: cols[0], image: cols[1], desc: cols[2], date: cols[3] };
+      });
+    }
+
+    fetch(productCSV)
+      .then(res => res.text())
+      .then(data => {
+        const items = parseCSV(data);
+        const container = document.getElementById("home-products");
+        items.forEach(item => {
+          const div = document.createElement("div");
+          div.className = "product-item";
+          div.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <h4>${item.name}</h4>
+            <p>${item.desc || ""}</p>
+          `;
+          container.appendChild(div);
+        });
+      });
+
+    fetch(galleryCSV)
+      .then(res => res.text())
+      .then(data => {
+        const items = parseCSV(data);
+        const container = document.getElementById("home-gallery");
+        items.forEach(item => {
+          const div = document.createElement("div");
+          div.className = "gallery-item";
+          div.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <h4>${item.name}</h4>
+          `;
+          container.appendChild(div);
+        });
+      });
+
+    fetch(blogCSV)
+      .then(res => res.text())
+      .then(data => {
+        const items = parseCSV(data);
+        const container = document.getElementById("home-blog");
+        items.forEach(item => {
+          const div = document.createElement("div");
+          div.className = "blog-post";
+          div.innerHTML = `
+            <h3>${item.name}</h3>
+            <small>${item.date || ""}</small>
+            <p>${item.desc || ""}</p>
+            <a href="blog.html">Read More</a>
+          `;
+          container.appendChild(div);
+        });
+      });
+  </script>
+</body>
+</html>
