@@ -8,6 +8,31 @@
     nav a { margin: 0 10px; text-decoration: none; }
     footer { margin-top: 20px; font-size: 14px; }
     img.banner { width: 100%; max-height: 300px; object-fit: cover; }
+    form {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -26,10 +51,29 @@
   <h1>Contact Us</h1>
   <p>We are here to serve you! Reach out for bulk or retail stockfish supply.</p>
 
+  <!-- Contact Form -->
+  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <label for="name">Full Name:</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="email">Your Email:</label>
+    <input type="email" name="email" id="email" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" name="phone" id="phone" value="+2347062474000" required>
+
+    <label for="message">Message:</label>
+    <textarea name="message" id="message" rows="5" required></textarea>
+
+    <button type="submit">Send Message</button>
+  </form>
+
   <!-- Footer -->
   <footer>
     <p>Address: SF 18 No 7 Cemetry Market, Eziukwu, Aba</p>
     <p>Phone: 07062474000</p>
+    <p>Email: emerembest24@gmail.com</p>
+    <p>WhatsApp: +2347062474000</p>
   </footer>
 </body>
 </html>
